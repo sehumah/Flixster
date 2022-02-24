@@ -1,4 +1,4 @@
-package com.assignment.flixster
+package com.assignment1.flixster
 
 import android.content.Context
 import android.content.res.Configuration
