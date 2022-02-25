@@ -44,7 +44,7 @@ class MovieAdapter(private val context: Context, private val movies: List<Movie>
             Glide
                 .with(context)
                 .load(imageURL)
-                .placeholder(R.drawable.ic_launcher_background)
+//                .placeholder(R.drawable.ic_launcher_background)
                 .into(ivPoster)
         }
     }
