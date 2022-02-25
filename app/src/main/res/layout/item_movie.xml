@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:actionBarNavMode="tabs"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -40,6 +42,7 @@
         android:ellipsize="end"
         android:maxLines="5"
         android:text="This is the movie overview"
+        android:textColor="#454242"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_poster"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
@@ -53,6 +56,7 @@
         android:layout_marginEnd="8dp"
         android:text="Release Date"
         android:textStyle="bold"
+        android:textColor="#777575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_poster"
         app:layout_constraintTop_toBottomOf="@+id/tv_overview" />
