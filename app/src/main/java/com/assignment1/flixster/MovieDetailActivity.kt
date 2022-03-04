@@ -9,6 +9,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import org.w3c.dom.Text
 
+private val YOUTUBE_API_KEY = System.getenv("YOUTUBE_API_KEY")
 private const val TAG = "MovieDetailActivity"
 class MovieDetailActivity : AppCompatActivity() {
 
