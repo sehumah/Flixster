@@ -49,12 +49,8 @@ class MovieDetailActivity : YouTubeBaseActivity() {
         // make get request to moviesDB for movie trailers
         val client = AsyncHttpClient()
         client.get(TRAILERS_URL.format(movie.id), object : JsonHttpResponseHandler() {
-            override fun onFailure(
-                statusCode: Int,
-                headers: Headers?,
-                response: String?,
-                throwable: Throwable?
-            ) {
+
+            override fun onFailure(statusCode: Int, headers: Headers?, response: String?, throwable: Throwable?) {
                 Log.i(TAG, "onFailure $statusCode")
             }
 
@@ -66,7 +62,7 @@ class MovieDetailActivity : YouTubeBaseActivity() {
                         Log.i(TAG, "No movie trailers found")  // warn developer
                         return
                     } else {
-                        val movieTrailerJSON = trailersArray.getJSONObject(6)
+                        val movieTrailerJSON = trailersArray.getJSONObject(0)
                         val youtubeKey = movieTrailerJSON.getString("key")
                         // now, play youtube video with this trailer
                         initializeYouTube(youtubeKey)
