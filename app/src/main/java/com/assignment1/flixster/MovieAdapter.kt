@@ -1,6 +1,7 @@
 package com.assignment1.flixster
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,7 +13,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-
+const val MOVIE_EXTRA = "MOVIE_EXTRA"
 private const val TAG = "MovieAdapter"
 
 class MovieAdapter(private val context: Context, private val movies: List<Movie>) :
@@ -60,7 +61,9 @@ class MovieAdapter(private val context: Context, private val movies: List<Movie>
             Toast.makeText(context, movie.title, Toast.LENGTH_SHORT).show()  // notify with the movie's title when a movie is clicked
 
             // 2. Use the Intent system to navigate to a new screen/activity
-
+            val intent = Intent(context, MovieDetailActivity::class.java)
+            intent.putExtra(MOVIE_EXTRA, movie)
+            context.startActivity(intent)
         }
     }
 
