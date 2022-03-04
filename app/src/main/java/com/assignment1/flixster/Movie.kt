@@ -1,19 +1,25 @@
 package com.assignment1.flixster
 
+import android.os.Parcelable
+import kotlinx.parcelize.IgnoredOnParcel
+import kotlinx.parcelize.Parcelize
 import org.json.JSONArray
 
 /**
  A class for each single movie object that will be displayed in the UI
  */
+@Parcelize
 data class Movie (
     val id: Int,
     val title: String,
     val overview: String,
     val releaseDate: String,
     private val posterPath: String,
-    private val backdropPath: String) {  // posterPath & backdropPath made private since no one needs to use it except posterImageURL
+    private val backdropPath: String) : Parcelable {  // posterPath & backdropPath made private since no one needs to use it except posterImageURL
 
+    @IgnoredOnParcel
     val posterImageURL = "https://image.tmdb.org/t/p/w342/$posterPath"
+    @IgnoredOnParcel
     val backdropPathURL = "https://image.tmdb.org/t/p/w342/$backdropPath"
 
     companion object {
