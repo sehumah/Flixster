@@ -68,7 +68,7 @@ class MovieDetailActivity : YouTubeBaseActivity() {
                         initializeYouTube(youtubeKey)
                     }
                 } catch (e: JSONException) {
-
+                        Log.i(TAG, "Encountered an exception: $e")
                 }
             }
         })
