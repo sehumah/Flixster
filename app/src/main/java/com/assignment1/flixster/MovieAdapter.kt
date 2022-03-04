@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -18,12 +19,17 @@ class MovieAdapter(private val context: Context, private val movies: List<Movie>
     RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     // ViewHolder is already defined by the RecyclerView so we're just extending it
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         // get references to the individual components in the itemView i.e the 2 TextViews & the ImageView & populate it with the correct data in the movie
         private val ivPoster = itemView.findViewById<ImageView>(R.id.iv_poster)
         private val tvTitle = itemView.findViewById<TextView>(R.id.tv_title)
         private val tvOverview = itemView.findViewById<TextView>(R.id.tv_overview)
         private val tvReleaseDate = itemView.findViewById<TextView>(R.id.tv_release_date)
+
+        // Register the click listener
+        init {
+            itemView.setOnClickListener(this)
+        }
 
         // bind movie data to the correct ItemViews
         fun bind(movie: Movie) {
@@ -46,6 +52,15 @@ class MovieAdapter(private val context: Context, private val movies: List<Movie>
                 .load(imageURL)
 //                .placeholder(R.drawable.ic_launcher_background)
                 .into(ivPoster)
+        }
+
+        override fun onClick(v: View?) {
+            // 1. Get notified of movie that was clicked
+            val movie = movies[adapterPosition]  // movie tapped
+            Toast.makeText(context, movie.title, Toast.LENGTH_SHORT).show()  // notify with the movie's title when a movie is clicked
+
+            // 2. Use the Intent system to navigate to a new screen/activity
+
         }
     }
 
