@@ -9,13 +9,15 @@ import org.json.JSONArray
  A class for each single movie object that will be displayed in the UI
  */
 @Parcelize
-data class Movie (
+data class Movie(
     val id: Int,
     val title: String,
     val overview: String,
     val voteAverageRB: Double,
     val voteAverage: String,
     val voteCount: String,
+    val popularity: String,
+    val originalLanguage: String,
     val releaseDate: String,
     private val posterPath: String,
     private val backdropPath: String) : Parcelable {  // posterPath & backdropPath made private since no one needs to use it except posterImageURL
@@ -41,6 +43,8 @@ data class Movie (
                         movieJSON.getDouble("vote_average"),
                         "Vote average: " + movieJSON.getDouble("vote_average").toString(),
                         "Vote count: " + movieJSON.getInt("vote_count").toString(),
+                        "Popularity: " + movieJSON.getDouble("popularity"),
+                        "Original Language: " + movieJSON.getString("original_language"),
                         "Release date: " + movieJSON.getString("release_date"),
                         movieJSON.getString("poster_path"),
                         movieJSON.getString("backdrop_path")

@@ -24,6 +24,8 @@ class MovieDetailActivity : YouTubeBaseActivity() {
     private lateinit var tvReleaseDate: TextView
     private lateinit var tvVoteCount: TextView
     private lateinit var tvVoteAverage: TextView
+    private lateinit var tvPopularity: TextView
+    private lateinit var tvOriginalLanguage: TextView
     private lateinit var ytPlayerView: YouTubePlayerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +38,8 @@ class MovieDetailActivity : YouTubeBaseActivity() {
         tvReleaseDate = findViewById(R.id.tv_release_date)
         tvVoteCount = findViewById(R.id.tv_vote_count)
         tvVoteAverage = findViewById(R.id.tv_vote_average)
+        tvPopularity = findViewById(R.id.tv_popularity)
+        tvOriginalLanguage = findViewById(R.id.tv_original_language)
         ytPlayerView = findViewById(R.id.ypv_yt_player)
 
         // Get movie object out of intent's putExtra
@@ -49,6 +53,8 @@ class MovieDetailActivity : YouTubeBaseActivity() {
         tvReleaseDate.text = movie.releaseDate
         tvVoteCount.text = movie.voteCount
         tvVoteAverage.text = movie.voteAverage
+        tvPopularity.text = movie.popularity.toString()
+        tvOriginalLanguage.text = movie.originalLanguage
 
         // make get request to moviesDB for movie trailers
         val client = AsyncHttpClient()
