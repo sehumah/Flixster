@@ -1,11 +1,7 @@
 package com.assignment1.flixster
 
-import android.icu.text.CaseMap
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.FilterQueryProvider
-import android.widget.LinearLayout
 import android.widget.RatingBar
 import android.widget.TextView
 import com.codepath.asynchttpclient.AsyncHttpClient
@@ -16,7 +12,6 @@ import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerView
 import okhttp3.Headers
 import org.json.JSONException
-import org.w3c.dom.Text
 
 private const val TRAILERS_URL = "https://api.themoviedb.org/3/movie/%d/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"
 private const val YOUTUBE_API_KEY = R.string.YOUTUBE_API_KEY.toString()
@@ -24,8 +19,11 @@ private const val TAG = "MovieDetailActivity"
 class MovieDetailActivity : YouTubeBaseActivity() {
 
     private lateinit var tvTitle: TextView
+    private lateinit var rbRatingBar: RatingBar
     private lateinit var tvOverview: TextView
-    private lateinit var ratingBar: RatingBar
+    private lateinit var tvReleaseDate: TextView
+    private lateinit var tvVoteCount: TextView
+    private lateinit var tvVoteAverage: TextView
     private lateinit var ytPlayerView: YouTubePlayerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,8 +31,11 @@ class MovieDetailActivity : YouTubeBaseActivity() {
         setContentView(R.layout.activity_movie_detail)
 
         tvTitle = findViewById(R.id.tv_title)
+        rbRatingBar = findViewById(R.id.rb_vote_average)
         tvOverview = findViewById(R.id.tv_overview)
-        ratingBar = findViewById(R.id.rb_vote_average)
+        tvReleaseDate = findViewById(R.id.tv_release_date)
+        tvVoteCount = findViewById(R.id.tv_vote_count)
+        tvVoteAverage = findViewById(R.id.tv_vote_average)
         ytPlayerView = findViewById(R.id.ypv_yt_player)
 
         // Get movie object out of intent's putExtra
@@ -43,8 +44,11 @@ class MovieDetailActivity : YouTubeBaseActivity() {
 
         // now, take data from the movie object and put it on the new screen
         tvTitle.text = movie.title
+        rbRatingBar.rating = movie.voteAverageRB.toFloat()
         tvOverview.text = movie.overview
-        ratingBar.rating = movie.voteAverage.toFloat()
+        tvReleaseDate.text = movie.releaseDate
+        tvVoteCount.text = movie.voteCount
+        tvVoteAverage.text = movie.voteAverage
 
         // make get request to moviesDB for movie trailers
         val client = AsyncHttpClient()
