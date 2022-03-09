@@ -13,8 +13,9 @@ data class Movie (
     val id: Int,
     val title: String,
     val overview: String,
-    val voteAverage: Double,
-    val voteCount: Int,
+    val voteAverageRB: Double,
+    val voteAverage: String,
+    val voteCount: String,
     val releaseDate: String,
     private val posterPath: String,
     private val backdropPath: String) : Parcelable {  // posterPath & backdropPath made private since no one needs to use it except posterImageURL
@@ -38,7 +39,8 @@ data class Movie (
                         movieJSON.getString("title"),
                         movieJSON.getString("overview"),
                         movieJSON.getDouble("vote_average"),
-                        movieJSON.getInt("vote_count"),
+                        "Vote average: " + movieJSON.getDouble("vote_average").toString(),
+                        "Vote count: " + movieJSON.getInt("vote_count").toString(),
                         "Release date: " + movieJSON.getString("release_date"),
                         movieJSON.getString("poster_path"),
                         movieJSON.getString("backdrop_path")
